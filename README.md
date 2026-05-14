@@ -1,18 +1,5 @@
 # CEP Clima — OpenTelemetry + Zipkin
 
-## Pré-requisitos
-
-- Docker e Docker Compose
-- Chave gratuita do [WeatherAPI](https://www.weatherapi.com/)
-
-## Build e execução
-
-Crie um arquivo `.env` na mesma pasta do `docker-compose.yaml`:
-
-```
-WEATHER_API=sua_chave_aqui
-```
-
 Suba os serviços:
 
 ```bash
