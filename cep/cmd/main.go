@@ -5,6 +5,7 @@ import (
 	"cep/internal/infra/service"
 	"cep/internal/infra/tracer"
 	"cep/internal/usecase"
+	"context"
 	"log"
 	"os"
 
@@ -22,7 +23,8 @@ func main() {
 	if endpoint == "" {
 		endpoint = "localhost:4318"
 	}
-	tracer.Init("service-a", endpoint)
+	shutdown := tracer.Init("service-a", endpoint)
+	defer shutdown(context.Background())
 
 	svc := service.NewCepService()
 	uc := usecase.NewCepUsecase(svc)

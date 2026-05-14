@@ -1,4 +1,4 @@
-FROM golang:1.22-alpine AS builder
+FROM golang:1.25-alpine AS builder
 
 RUN apk add --no-cache ca-certificates
 WORKDIR /app
@@ -8,7 +8,8 @@ RUN go mod download
 
 COPY . .
 
-RUN GOOS=linux CGO_ENABLED=0 go build -o server cmd/main.go
+RUN GOOS=linux CGO_ENABLED=0 go build -o server cmd/main.go && \
+    go clean -cache
 
 FROM scratch
 WORKDIR /app
